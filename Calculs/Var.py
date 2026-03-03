@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+
 from scipy.stats import norm, skew, kurtosis
 
 # =========================================================
@@ -86,11 +86,3 @@ for col in ['VaR_EWMA', 'VaR_Param', 'VaR_Hist', 'VaR_CF']:
     summary[col] = pct
     print(f"{col:<20} | {nb:<10} | {pct:.2f}%")
 
-# Graphique
-plt.figure(figsize=(12, 6))
-plt.plot(df_final['Returns'], color='silver', alpha=0.4, label='Rendements Portefeuille')
-plt.plot(-df_final['VaR_EWMA'], label='VaR EWMA', color='orange')
-plt.plot(-df_final['VaR_CF'], label='VaR Cornish-Fisher', color='red')
-plt.title("Backtesting VaR 95% sur Portefeuille Équilibré")
-plt.legend()
-plt.show()
