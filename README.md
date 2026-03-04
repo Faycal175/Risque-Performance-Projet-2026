@@ -132,6 +132,10 @@ Cloner le repository :
 ```bash
 git clone https://github.com/Faycal175/Risque-Performance-Projet-2026.git
 cd Risque-Performance-Projet-2026
+
+python -m venv .venv
+.venv\Scripts\activate
+
 pip install -r requirements.txt
 ```
 
