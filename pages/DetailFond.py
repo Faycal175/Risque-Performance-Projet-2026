@@ -11,15 +11,11 @@ import plotly.graph_objects as go
 import streamlit as st
 
 
-# =========================================================
-# CONFIG
-# =========================================================
+
 st.set_page_config(page_title="Stratégie Équilibrée", layout="wide")
 
 
-# =========================================================
-# NAV
-# =========================================================
+
 nav_left, nav_right = st.columns([3, 1.8])
 
 with nav_left:
@@ -28,17 +24,13 @@ with nav_left:
     if st.button("←", help="Page précédente"):
         st.switch_page("pages/choix.py")
 
-# =========================================================
-# PATHS
-# =========================================================
+
 CURRENT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = CURRENT_DIR.parent
 CSV_PATH = PROJECT_ROOT / "Projet" / "portefeuille_equilibre.csv"
 
 
-# =========================================================
-# HELPERS
-# =========================================================
+
 def load_portfolio_df_from_state_or_csv() -> tuple[str, pd.DataFrame]:
     pname = st.session_state.get("selected_profile", "Équilibré")
     df0 = st.session_state.get("selected_portfolio_df", None)
@@ -121,9 +113,9 @@ def bucket_totals_pct(df_norm: pd.DataFrame) -> dict[str, float]:
     return {str(k): float(v * 100.0) for k, v in g.items()}
 
 
-# =========================================================
+
 # LOAD DATA
-# =========================================================
+
 pname, df_raw = load_portfolio_df_from_state_or_csv()
 df = normalize_portfolio_columns(df_raw)
 n_funds = int(df["ISIN"].nunique()) if not df.empty else 0
@@ -135,10 +127,9 @@ b_def = bkt.get("Actions - Défense", 10.0)  # indicatif
 b_core = bkt.get("Actions - Core", max(0.0, b_act - b_def))  # indicatif
 
 
-# =========================================================
-# PARAMS (affichés) — alignés avec ton engine
-# =========================================================
-# (tu peux aussi les importer depuis Calculs.ptf_equilibre_engine si tu préfères)
+
+
+
 MAX_LINE_WEIGHT = 0.10          # 10% max par ligne
 CORE_MIN_PER_FUND = 0.02        # 2% min par fond core (quand possible)
 DEF_MIN_W = 0.15                # 15% min de défense dans le portefeuille (dans ton engine actuel)
@@ -149,9 +140,7 @@ MOM_TILT_STRENGTH = 0.30
 DEF_TILT_STRENGTH = 0.60
 
 
-# =========================================================
-# CSS (style + orga)
-# =========================================================
+
 st.markdown(
     """
 <style>
@@ -311,9 +300,7 @@ table.custom-table tbody tr:hover{
 )
 
 
-# =========================================================
-# HERO
-# =========================================================
+
 st.markdown(
     f"""
 <div class="hero">
@@ -332,9 +319,9 @@ st.markdown(
 st.markdown("---")
 
 
-# =========================================================
-# TOP: DONUT + STRAT SUMMARY (bulles mieux organisées)
-# =========================================================
+
+
+
 st.subheader("Cadre Technique")
 
 colA, colB = st.columns([1.25, 1], gap="large")
@@ -371,7 +358,7 @@ with colA:
     unsafe_allow_html=True,
 )
 
-# ✅ formule en vrai LaTeX, en dessous
+# formule en vrai LaTeX, en dessous
     st.latex(r"s_i(t)=\mathrm{Mom}_{12m}(t)-\mathrm{Mom}_{1m}(t)")
 with colB:
     # donut macro (indicatif)
@@ -425,9 +412,9 @@ with colB:
 st.divider()
 
 
-# =========================================================
+
 # EXPLICATION STRATÉGIQUE
-# =========================================================
+
 st.subheader("Ce que cela signifie concrètement pour vous")
 
 st.markdown(
@@ -475,9 +462,9 @@ Ces contraintes permettent de maintenir un portefeuille
 st.divider()
 
 
-# =========================================================
+
 # TABS
-# =========================================================
+
 st.subheader("Composition et poches")
 
 tab_compo, tab_obli, tab_core, tab_def = st.tabs(
@@ -490,9 +477,8 @@ tab_compo, tab_obli, tab_core, tab_def = st.tabs(
 )
 
 
-# =========================================================
 # TAB COMPOSITION (table)
-# =========================================================
+
 with tab_compo:
     if df.empty:
         st.warning(
@@ -586,9 +572,8 @@ with tab_def:
     )
 
 
-# =========================================================
-# NAV BUTTONS
-# =========================================================
+
+
 st.divider()
 btn_left, btn_right = st.columns([1, 1], gap="large")
 with btn_left:

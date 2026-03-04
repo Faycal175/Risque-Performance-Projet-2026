@@ -625,7 +625,8 @@ def get_clean_data_equilibre_fixed(
     r_p = _rolling_vol(ret_pf, win=TRADING_DAYS)
     r_b = _rolling_vol(ret_bm, win=TRADING_DAYS)
 
-    mu_p = float(ret_pf.mean() * TRADING_DAYS) if len(ret_pf) else np.nan
+    dur_years = (pf_v.index[-1] - pf_v.index[0]).days / 365.25
+    mu_p = float((pf_v.iloc[-1] / pf_v.iloc[0]) ** (1 / dur_years) - 1) if dur_years > 0 else np.nan
     vol_p = float(ret_pf.std(ddof=0) * np.sqrt(TRADING_DAYS)) if len(ret_pf) else np.nan
 
     w_last = w_prev.copy()

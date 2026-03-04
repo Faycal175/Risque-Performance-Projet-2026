@@ -177,9 +177,12 @@ with c3:
 
 with c4:
     fig_v = go.Figure()
-    fig_v.add_trace(go.Scatter(x=r_p.index, y=r_p.values, name="PTF Vol", line=dict(color="#007BFF", width=2)))
+    r_p_plot = r_p.dropna()
+    r_b_plot = r_b.dropna()
+
+    fig_v.add_trace(go.Scatter(x=r_p_plot.index, y=r_p_plot.values, name="PTF Vol", line=dict(color="#007BFF", width=2)))
     fig_v.add_trace(
-        go.Scatter(x=r_b.index, y=r_b.values, name="Bench Vol", line=dict(color="#FFA500", width=2, dash="dash"))
+        go.Scatter(x=r_b_plot.index, y=r_b_plot.values, name="Bench Vol", line=dict(color="#FFA500", width=2, dash="dash"))
     )
     
     fig_v.update_layout(height=300, margin=dict(l=0, r=0, t=20, b=0), title="Volatilité glissantes (252j)")
