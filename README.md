@@ -105,7 +105,7 @@ Projet_Perff/
 │  ├─ eq_engine.py
 │  ├─ ptf_client_engine.py
 │  ├─ ptf_equilibre_engine.py
-│  └─ Var.py
+│  
 ├─ pages/
 │  ├─ choix.py
 │  ├─ Dash_equi.py
