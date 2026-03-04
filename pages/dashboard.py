@@ -66,14 +66,14 @@ bm_idx = (1 + ret_bm).cumprod()
 surperf = ((pf_idx / bm_idx) - 1) * 100
 surperf = surperf.dropna()
 
-st.title("Audit Stratégique de Portefeuille (2020 - 2026)")
+st.title("Dashboard de votre Portefeuille (2020 - 2026)")
 
 c1, c2 = st.columns([1, 2.5])
 
 with c1:
     st.markdown(
         "<p style='color:#007BFF; font-size:16px; margin-bottom:0;'>"
-        "VALEUR LIQUIDATIVE <span style='float:right; color:gray; font-size:12px;'>AU 30/01/2026</span></p>",
+        "VALEUR PORTEFEUILLE <span style='float:right; color:gray; font-size:12px;'>AU 30/01/2026</span></p>",
         unsafe_allow_html=True,
     )
     st.markdown(
@@ -124,7 +124,7 @@ with c2:
             x=surperf.index,
             y=surperf.values,
             name="Surperformance cumulée",
-            line=dict(width=2, dash="dot"),
+            line=dict(color="#FF9AA2", width=2),  # trait plein
         ),
         secondary_y=True,
     )
@@ -137,6 +137,14 @@ with c2:
     fig_c.update_yaxes(title_text="Indice (base 100)", secondary_y=False)
     fig_c.update_yaxes(title_text="Surperformance (%)", secondary_y=True)
     st.plotly_chart(fig_c, use_container_width=True)
+
+    fig_c.update_layout(
+    title="Performance cumulée vs Benchmark",
+    height=280,
+    margin=dict(l=0, r=0, t=40, b=0),
+    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+)
+
 
 st.divider()
 
@@ -164,7 +172,7 @@ with c3:
             textposition="auto",
         )
     )
-    fig_bar.update_layout(height=300, barmode="group", margin=dict(l=0, r=0, t=20, b=0))
+    fig_bar.update_layout(height=300,title="Rendements calendaires (%)", barmode="group", margin=dict(l=0, r=0, t=20, b=0))
     st.plotly_chart(fig_bar, use_container_width=True)
 
 with c4:
@@ -173,8 +181,8 @@ with c4:
     fig_v.add_trace(
         go.Scatter(x=r_b.index, y=r_b.values, name="Bench Vol", line=dict(color="#FFA500", width=2, dash="dash"))
     )
-    fig_v.add_trace(go.Scatter(x=te_roll.index, y=te_roll.values, name="Tracking Error (252j)", line=dict(width=2, dash="dot")))
-    fig_v.update_layout(height=300, margin=dict(l=0, r=0, t=20, b=0), title="Volatilité & Tracking Error glissantes (252j)")
+    
+    fig_v.update_layout(height=300, margin=dict(l=0, r=0, t=20, b=0), title="Volatilité glissantes (252j)")
     fig_v.update_yaxes(title_text="% annualisé")
     st.plotly_chart(fig_v, use_container_width=True)
 
