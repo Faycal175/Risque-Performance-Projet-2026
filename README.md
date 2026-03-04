@@ -1,1 +1,142 @@
-# Risque-Performance-Projet-2026
+# Portfolio Management & Risk Dashboard  
+### Master 272 — Risque & Performance (Université Paris-Dauphine)
+
+Ce projet a été réalisé dans le cadre du cours **Risque & Performance du Master 272**.  
+
+L'objectif est de développer un **outil d'analyse et de gestion de portefeuille d'investisseur**, permettant :
+
+- la construction et le backtest d'un portefeuille équilibré
+- l'analyse de performance vs benchmark
+- l'étude de l'allocation et des corrélations
+- la mesure du risque ex-ante
+- la simulation de scénarios futurs
+
+L'application est développée sous forme de **dashboard interactif avec Streamlit**.
+
+---
+
+# Objectifs du projet
+
+L'outil permet de reproduire plusieurs analyses utilisées en **gestion d'actifs** et **gestion de portefeuille**, notamment :
+
+- analyse de performance
+- décomposition du risque
+- corrélations entre actifs
+- contribution au risque
+- Value-at-Risk
+- projection Monte-Carlo
+
+L'application est conçue comme un **outil d'aide à la décision pour un investisseur**.
+
+---
+
+# Architecture de l'application
+
+L'application est organisée en plusieurs modules :
+
+### 1️⃣ Dashboard rétrospectif
+Analyse historique du portefeuille :
+
+- performance vs benchmark
+- rendement annuel
+- volatilité glissante
+- allocation du portefeuille
+- matrice de corrélation
+
+### 2️⃣ Analyse Ex-Ante du risque
+Mesure du risque futur du portefeuille :
+
+- volatilité ex-ante (Markowitz)
+- espérance de rendement
+- corrélation moyenne
+- contribution au risque
+- VaR / CVaR
+- bêta vs benchmark
+
+### 3️⃣ Simulation Monte-Carlo
+Projection de la valeur du portefeuille sur **5 ans** avec un **mouvement brownien géométrique**.
+
+---
+
+# Stratégie d'investissement
+
+
+Structure :
+
+- **50% Obligations**
+- **50% Actions**
+
+La poche actions est divisée entre :
+
+- **Core**
+- **Actifs Défense**
+
+---
+
+# Stratégie Momentum
+
+Une **stratégie momentum** est utilisée pour ajuster les pondérations.
+
+Le signal momentum est calculé comme :
+
+Momentum Score = Momentum(12 mois) − Momentum(1 mois)
+
+avec :
+
+- Momentum 12 mois ≈ rendement sur 252 jours
+- Momentum 1 mois ≈ rendement sur 21 jours
+
+Le signal est utilisé pour :
+
+- tilting des poids du **core actions**
+- ajustement de la poche **défensive**
+
+Le portefeuille est **rebalancé annuellement**.
+
+---
+
+## Arborescence du projet
+
+```text
+Projet_Perff/
+├─ app.py
+├─ Calculs/
+│  ├─ __init__.py
+│  ├─ eq_engine.py
+│  ├─ ptf_client_engine.py
+│  ├─ ptf_equilibre_engine.py
+│  └─ Var.py
+├─ pages/
+│  ├─ choix.py
+│  ├─ Dash_equi.py
+│  ├─ dashboard.py
+│  ├─ DetailFond.py
+│  └─ ExAnte.py
+└─ Projet/
+   ├─ Indices/
+   ├─ Data.xlsb
+   ├─ UniversInvestissement.xlsb
+   ├─ Univers-Prix.parquet
+   ├─ forex.parquet
+   ├─ portefeuille_equilibre.csv
+   ├─ Données historiques EAGG(1).csv
+   └─ Sujet_v1.pdf
+```
+
+---
+
+# Installation
+
+Cloner le repository :
+
+```bash
+git clone https://github.com/Faycal175/Risque-Performance-Projet-2026.git
+cd Risque-Performance-Projet-2026
+pip install -r requirements.txt
+```
+
+# Lancement
+```bash
+streamlit run app.py
+```
+
