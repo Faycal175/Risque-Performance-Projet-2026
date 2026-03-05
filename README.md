@@ -13,6 +13,18 @@ L'objectif est de développer un **outil d'analyse et de gestion de portefeuille
 
 L'application est développée sous forme de **dashboard interactif avec Streamlit**.
 
+## Application en ligne
+
+Une version de l'application est accessible en ligne à l'adresse suivante :
+
+https://risque-performance-projet-2026.onrender.com
+
+Cependant, certaines fonctionnalités peuvent ne pas être disponibles. En effet, l'application est hébergée sur la version gratuite de Render, qui impose des limitations de mémoire et de ressources.
+
+Ces contraintes peuvent empêcher l'exécution de certains calculs plus lourds (simulations, analyses complètes, etc.).
+
+Pour une expérience complète et pour accéder à toutes les fonctionnalités de l'application, nous vous recommandons de lancer l'application localement en suivant les instructions décrites dans la section située en bas de ce document.
+
 ---
 
 # Objectifs du projet
