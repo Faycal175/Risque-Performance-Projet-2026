@@ -34,7 +34,7 @@ L'application est conçue comme un **outil d'aide à la décision pour un invest
 
 L'application est organisée en plusieurs modules :
 
-### 1️⃣ Dashboard rétrospectif
+### 1️ Dashboard rétrospectif
 Analyse historique du portefeuille :
 
 - performance vs benchmark
@@ -43,7 +43,7 @@ Analyse historique du portefeuille :
 - allocation du portefeuille
 - matrice de corrélation
 
-### 2️⃣ Analyse Ex-Ante du risque
+### 2️ Analyse Ex-Ante du risque
 Mesure du risque futur du portefeuille :
 
 - volatilité ex-ante (Markowitz)
@@ -53,8 +53,6 @@ Mesure du risque futur du portefeuille :
 - VaR / CVaR
 - bêta vs benchmark
 
-### 3️⃣ Simulation Monte-Carlo
-Projection de la valeur du portefeuille sur **5 ans** avec un **mouvement brownien géométrique**.
 
 ---
 
