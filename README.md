@@ -153,4 +153,9 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+## Project Team
 
+- Fayçal EL BOUZIDI  
+- Simona NIKOLOVA  
+- Owen MANACH  
+- Victor D'ANGLEJAN
